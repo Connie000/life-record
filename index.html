@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
-        :root { --ios-bg: #F2F2F7; --ios-card: #FFFFFF; }
+        :root { --ios-bg: #F2F2F7; --ios-card: #FFFFFF; --accent: #4F46E5; }
         body { 
             font-family: 'Noto Sans TC', sans-serif; 
             background-color: var(--ios-bg); 
@@ -21,26 +21,28 @@
         .page.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         
-        .nav-item.active { color: #4F46E5; }
+        .nav-item.active { color: var(--accent); }
         .portion-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 10px; background: #F1F5F9; font-weight: bold; }
         .toggle-btn { padding: 8px 12px; border-radius: 12px; font-size: 13px; font-weight: 700; background: #F1F5F9; color: #64748B; transition: all 0.2s; border: none; flex: 1; text-align: center; }
-        .toggle-btn.active { background: #4F46E5; color: white; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3); }
+        .toggle-btn.active { background: var(--accent); color: white; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3); }
         
         .photo-box { position: relative; aspect-ratio: 1/1; border-radius: 16px; border: 2px dashed #E2E8F0; background: #F8FAFC; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; transition: 0.2s; }
         .photo-box img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 10; }
         
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
         .calendar-day { aspect-ratio: 1/1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; font-size: 14px; position: relative; cursor: pointer; }
-        .calendar-day.has-data::after { content: ''; position: absolute; bottom: 4px; width: 4px; height: 4px; background: #4F46E5; border-radius: 50%; }
-        .calendar-day.selected { background: #4F46E5; color: white; font-weight: bold; }
+        .calendar-day.has-data::after { content: ''; position: absolute; bottom: 4px; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; }
+        .calendar-day.selected { background: var(--accent); color: white; font-weight: bold; }
 
-        .status-tag { padding: 4px 8px; border-radius: 8px; font-size: 11px; font-weight: 700; background: #F1F5F9; color: #475569; display: flex; align-items: center; gap: 4px; border: 1px solid #E2E8F0; }
-        .status-tag-green { background: #DCFCE7; color: #15803D; border-color: #BBF7D0; }
-        .status-tag-red { background: #FEE2E2; color: #B91C1C; border-color: #FECACA; }
+        .status-tag { padding: 6px 4px; border-radius: 8px; font-size: 10px; font-weight: 500; background: #F8FAFC; color: #64748B; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid #F1F5F9; text-align: center; }
+        .status-tag b { color: #1E293B; font-size: 11px; margin-top: 2px; }
+        .status-tag-green { background: #F0FDF4; border-color: #DCFCE7; }
+        .status-tag-green b { color: #166534; }
+        .status-tag-red { background: #FEF2F2; border-color: #FEE2E2; }
+        .status-tag-red b { color: #991B1B; }
         
-        .thumb-label { position: absolute; top: 4px; left: 4px; background: rgba(0,0,0,0.5); color: white; font-size: 8px; padding: 2px 4px; border-radius: 4px; z-index: 20; }
-        
-        input[type="range"] { accent-color: #4F46E5; }
+        .thumb-label { position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.6); color: white; font-size: 8px; padding: 1px 4px; border-bottom-right-radius: 6px; z-index: 20; font-weight: 900; }
+        input[type="range"] { accent-color: var(--accent); }
     </style>
 </head>
 <body>
@@ -52,15 +54,15 @@
                 <h1 class="text-2xl font-black text-slate-800">每日紀錄</h1>
                 <p id="display-date" class="text-indigo-600 font-bold text-lg">載入中...</p>
             </div>
-            <button onclick="go('calendar')" class="bg-indigo-50 p-2 rounded-full text-indigo-600 active:scale-90 transition-transform">
+            <button onclick="go('calendar')" class="bg-indigo-50 p-2 rounded-full text-indigo-600">
                 <i data-lucide="calendar-days"></i>
             </button>
         </header>
 
         <main class="px-4">
-            <!-- 0. 體重腰圍 (置頂) -->
+            <!-- 0. 體重腰圍 -->
             <div class="ios-card p-5">
-                <h3 class="text-xs font-black text-slate-400 mb-3 uppercase tracking-widest">核心數據</h3>
+                <h3 class="text-[10px] font-black text-slate-400 mb-3 uppercase tracking-widest">核心數據</h3>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100">
                         <label class="text-[10px] font-bold text-slate-500">體重 (kg)</label>
@@ -75,12 +77,12 @@
 
             <!-- 1. 飲食照片 & 份量 -->
             <div class="ios-card p-5">
-                <h3 class="text-xs font-black text-slate-400 mb-4 uppercase tracking-widest">1. 飲食紀錄 (三餐照片與份量)</h3>
+                <h3 class="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-widest">1. 飲食與照片</h3>
                 <div class="grid grid-cols-4 gap-2 mb-4">
-                    <div onclick="upImg('bk')" class="photo-box"><img id="img-bk" class="hidden"><i data-lucide="coffee" class="text-slate-300 w-5 h-5"></i><span class="text-[9px] text-slate-400 mt-1 text-center">早餐</span></div>
-                    <div onclick="upImg('lu')" class="photo-box"><img id="img-lu" class="hidden"><i data-lucide="utensils" class="text-slate-300 w-5 h-5"></i><span class="text-[9px] text-slate-400 mt-1 text-center">午餐</span></div>
-                    <div onclick="upImg('dn')" class="photo-box"><img id="img-dn" class="hidden"><i data-lucide="moon" class="text-slate-300 w-5 h-5"></i><span class="text-[9px] text-slate-400 mt-1 text-center">晚餐</span></div>
-                    <div onclick="upImg('bd')" class="photo-box bg-indigo-50 border-indigo-100"><img id="img-bd" class="hidden"><i data-lucide="camera" class="text-indigo-300 w-5 h-5"></i><span class="text-[9px] text-indigo-400 mt-1 text-center">體態</span></div>
+                    <div onclick="upImg('bk')" class="photo-box"><img id="img-bk" class="hidden"><i data-lucide="coffee" class="text-slate-300 w-5 h-5"></i><span class="text-[9px] text-slate-400 mt-1">早餐</span></div>
+                    <div onclick="upImg('lu')" class="photo-box"><img id="img-lu" class="hidden"><i data-lucide="utensils" class="text-slate-300 w-5 h-5"></i><span class="text-[9px] text-slate-400 mt-1">午餐</span></div>
+                    <div onclick="upImg('dn')" class="photo-box"><img id="img-dn" class="hidden"><i data-lucide="moon" class="text-slate-300 w-5 h-5"></i><span class="text-[9px] text-slate-400 mt-1">晚餐</span></div>
+                    <div onclick="upImg('bd')" class="photo-box bg-indigo-50 border-indigo-100"><img id="img-bd" class="hidden"><i data-lucide="camera" class="text-indigo-300 w-5 h-5"></i><span class="text-[9px] text-indigo-400 mt-1 font-bold">體態</span></div>
                 </div>
                 <input type="file" id="f-bk" accept="image/*" class="hidden" onchange="handleFile(this, 'img-bk')">
                 <input type="file" id="f-lu" accept="image/*" class="hidden" onchange="handleFile(this, 'img-lu')">
@@ -88,16 +90,16 @@
                 <input type="file" id="f-bd" accept="image/*" class="hidden" onchange="handleFile(this, 'img-bd')">
 
                 <div class="space-y-3">
-                    <div class="flex items-center justify-between"><span class="text-sm font-bold">🍚 主食 (目標 2.5 份)</span><div class="flex items-center gap-3"><button onclick="adjPortion('carbs',-0.5)" class="portion-btn">-</button><span id="v-carbs" class="font-black w-8 text-center text-indigo-600">0.0</span><button onclick="adjPortion('carbs',0.5)" class="portion-btn text-indigo-600">+</button></div></div>
-                    <div class="flex items-center justify-between"><span class="text-sm font-bold">🍗 蛋白質 (目標 2.5 份)</span><div class="flex items-center gap-3"><button onclick="adjPortion('prot',-0.5)" class="portion-btn">-</button><span id="v-prot" class="font-black w-8 text-center text-indigo-600">0.0</span><button onclick="adjPortion('prot',0.5)" class="portion-btn text-indigo-600">+</button></div></div>
-                    <div class="flex items-center justify-between"><span class="text-sm font-bold">🥦 蔬菜 (目標 3 份)</span><div class="flex items-center gap-3"><button onclick="adjPortion('veg',-0.5)" class="portion-btn">-</button><span id="v-veg" class="font-black w-8 text-center text-indigo-600">0.0</span><button onclick="adjPortion('veg',0.5)" class="portion-btn text-indigo-600">+</button></div></div>
+                    <div class="flex items-center justify-between"><span class="text-sm font-bold">🍚 主食 (目標 2.5)</span><div class="flex items-center gap-3"><button onclick="adjPortion('carbs',-0.5)" class="portion-btn">-</button><span id="v-carbs" class="font-black w-8 text-center text-indigo-600">0.0</span><button onclick="adjPortion('carbs',0.5)" class="portion-btn text-indigo-600">+</button></div></div>
+                    <div class="flex items-center justify-between"><span class="text-sm font-bold">🍗 蛋白質 (目標 2.5)</span><div class="flex items-center gap-3"><button onclick="adjPortion('prot',-0.5)" class="portion-btn">-</button><span id="v-prot" class="font-black w-8 text-center text-indigo-600">0.0</span><button onclick="adjPortion('prot',0.5)" class="portion-btn text-indigo-600">+</button></div></div>
+                    <div class="flex items-center justify-between"><span class="text-sm font-bold">🥦 蔬菜 (目標 3.0)</span><div class="flex items-center gap-3"><button onclick="adjPortion('veg',-0.5)" class="portion-btn">-</button><span id="v-veg" class="font-black w-8 text-center text-indigo-600">0.0</span><button onclick="adjPortion('veg',0.5)" class="portion-btn text-indigo-600">+</button></div></div>
                 </div>
             </div>
 
             <!-- 2. 水 -->
             <div class="ios-card p-5">
                 <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest">2. 飲水量 (cc)</h3>
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest">2. 飲水量 (cc)</h3>
                     <span id="display-water" class="text-sm font-black text-indigo-600">0 cc</span>
                 </div>
                 <div class="flex gap-2">
@@ -110,7 +112,7 @@
 
             <!-- 3-4. 挑戰 -->
             <div class="ios-card p-5">
-                <h3 class="text-xs font-black text-slate-400 mb-3 uppercase tracking-widest">3-4. 飲食挑戰</h3>
+                <h3 class="text-[10px] font-black text-slate-400 mb-3 uppercase tracking-widest">3-4. 飲食挑戰</h3>
                 <div class="flex gap-2">
                     <button id="btn-evil" onclick="this.classList.toggle('active')" class="toggle-btn">3. 邪惡食物</button>
                     <button id="btn-party" onclick="this.classList.toggle('active')" class="toggle-btn">4. 社交聚餐</button>
@@ -119,13 +121,13 @@
 
             <!-- 5-10. 生活狀態 -->
             <div class="ios-card p-5">
-                <h3 class="text-xs font-black text-slate-400 mb-4 uppercase tracking-widest">生活狀態自檢 (5-10)</h3>
+                <h3 class="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-widest">生活狀態自檢 (5-10)</h3>
                 <div class="space-y-4">
                     <div class="bg-indigo-50/50 p-4 rounded-2xl">
                         <label class="text-[10px] font-bold text-indigo-500 block mb-2">5. 睡眠時間</label>
                         <div class="flex items-center gap-2">
                             <input type="time" id="f-sleep-start" class="flex-1 bg-white rounded-lg p-2 text-xs font-bold border-none">
-                            <span class="text-slate-400">至</span>
+                            <span class="text-slate-400 text-xs">至</span>
                             <input type="time" id="f-sleep-end" class="flex-1 bg-white rounded-lg p-2 text-xs font-bold border-none">
                         </div>
                         <select id="f-sleep-quality" class="w-full mt-2 bg-white rounded-lg px-3 py-2 font-bold text-xs border-none">
@@ -195,7 +197,7 @@
             </div>
 
             <div id="weekly-details" class="space-y-4 pb-10">
-                <!-- 每日縮圖摘要 -->
+                <!-- 每日紀錄清單 -->
             </div>
         </main>
     </div>
@@ -257,15 +259,6 @@
             
             await signInAnonymously(auth);
             onAuthStateChanged(auth, u => { if (u) { user = u; listenData(); } });
-
-            setInterval(() => {
-                const checkNow = new Date();
-                if (checkNow.getDate() !== currentDate.getDate()) {
-                    currentDate = new Date(checkNow.getFullYear(), checkNow.getMonth(), checkNow.getDate());
-                    updateDateLabel();
-                    loadData(formatDate(currentDate));
-                }
-            }, 60000);
         };
 
         function listenData() {
@@ -279,13 +272,34 @@
             }, (err) => console.error(err));
         }
 
+        async function compressImage(dataUrl, maxWidth = 800) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width, height = img.height;
+                    if (width > maxWidth) {
+                        height = Math.round((height * maxWidth) / width);
+                        width = maxWidth;
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    resolve(canvas.toDataURL('image/jpeg', 0.7));
+                };
+                img.src = dataUrl;
+            });
+        }
+
         window.upImg = (id) => document.getElementById(`f-${id}`).click();
-        window.handleFile = (input, imgId) => {
+        window.handleFile = async (input, imgId) => {
             if (input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = e => {
+                reader.onload = async e => {
+                    const compressed = await compressImage(e.target.result);
                     const img = document.getElementById(imgId);
-                    img.src = e.target.result;
+                    img.src = compressed;
                     img.classList.remove('hidden');
                 };
                 reader.readAsDataURL(input.files[0]);
@@ -308,6 +322,7 @@
             if (!user) return;
             const btn = document.getElementById('save-btn');
             const dateStr = formatDate(currentDate);
+            btn.disabled = true;
             btn.innerText = "同步數據中...";
             
             const data = {
@@ -334,9 +349,11 @@
                 updated: new Date().getTime()
             };
 
-            await setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'dailyLogs', dateStr), data);
-            btn.innerText = "已成功儲存 ✨";
-            setTimeout(() => btn.innerText = "儲存今日紀錄", 2000);
+            try {
+                await setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'dailyLogs', dateStr), data);
+                btn.innerText = "已成功儲存 ✨";
+            } catch (e) { btn.innerText = "儲存失敗"; }
+            setTimeout(() => { btn.disabled = false; btn.innerText = "儲存今日紀錄"; }, 2000);
         };
 
         function loadData(dateStr) {
@@ -388,11 +405,12 @@
             const container = document.getElementById('weekly-details');
             container.innerHTML = "";
             
-            // 獲取本週一到週日
-            const curr = new Date();
-            const day = curr.getDay(); // 0 是週日, 1-6 是週一到週六
-            const diff = curr.getDate() - day + (day === 0 ? -6 : 1); // 調整至本週一
-            const monday = new Date(curr.setDate(diff));
+            // 重新計算「目前時間」所在的週一
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const dayOfWeek = today.getDay(); // 0:日, 1:一...
+            const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); 
+            const monday = new Date(today.setDate(diff));
             
             const weekDates = [];
             for(let i=0; i<7; i++) {
@@ -400,7 +418,7 @@
                 d.setDate(monday.getDate() + i);
                 weekDates.push(formatDate(d));
             }
-            document.getElementById('weekly-range-label').innerText = `本週：${weekDates[0]} ~ ${weekDates[6]}`;
+            document.getElementById('weekly-range-label').innerText = `${weekDates[0]} ~ ${weekDates[6]}`;
 
             weekDates.forEach(date => {
                 const data = allData[date] || null;
@@ -409,52 +427,47 @@
                 const dateLabel = `${dObj.getMonth()+1}/${dObj.getDate()} (${dayName})`;
                 
                 const card = document.createElement('div');
-                card.className = "ios-card p-4";
+                card.className = "ios-card p-4 overflow-hidden";
                 if(!data) {
-                    card.innerHTML = `<div class="flex justify-between items-center opacity-40"><span class="font-bold text-slate-400">${dateLabel}</span><span class="text-[10px] italic">尚未填寫紀錄</span></div>`;
+                    card.innerHTML = `<div class="flex justify-between items-center opacity-30 px-2 py-3 border-2 border-dashed border-slate-200 rounded-xl"><span class="font-bold text-slate-400 text-xs">${dateLabel}</span><span class="text-[10px]">尚未填寫</span></div>`;
                 } else {
-                    const statusClass = (val, bad) => val === bad ? 'status-tag-red' : (['良好','活力','順暢','無','低'].includes(val) ? 'status-tag-green' : 'status-tag');
+                    const checkBad = (val, badArr) => badArr.includes(val) ? 'status-tag-red' : (['良好','活力','順暢','無','低'].includes(val) ? 'status-tag-green' : '');
                     
                     card.innerHTML = `
-                        <div class="flex justify-between items-start mb-4">
+                        <div class="flex justify-between items-start mb-3">
                             <div>
-                                <span class="font-black text-slate-900 text-lg">${dateLabel}</span>
-                                <div class="flex gap-2 mt-1">
-                                    <span class="bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded text-[10px] font-bold">⚖️ ${data.weight || '--'}kg</span>
-                                    <span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-[10px] font-bold">📏 ${data.waist || '--'}cm</span>
+                                <span class="font-black text-slate-900 text-sm">${dateLabel}</span>
+                                <div class="flex gap-1 mt-1">
+                                    <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">⚖️ ${data.weight || '--'}</span>
+                                    <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">📏 ${data.waist || '--'}</span>
                                 </div>
                             </div>
                             <div class="flex gap-1">
-                                ${data.evil ? '<span class="bg-red-500 text-white w-6 h-6 flex items-center justify-center rounded-lg text-xs">🍕</span>' : ''}
-                                ${data.party ? '<span class="bg-orange-500 text-white w-6 h-6 flex items-center justify-center rounded-lg text-xs">🍻</span>' : ''}
+                                ${data.evil ? '<span class="w-5 h-5 flex items-center justify-center bg-red-100 rounded text-[10px]">🍕</span>' : ''}
+                                ${data.party ? '<span class="w-5 h-5 flex items-center justify-center bg-orange-100 rounded text-[10px]">🥂</span>' : ''}
                             </div>
                         </div>
 
-                        <!-- 飲食縮圖 (左上角備註) -->
-                        <div class="grid grid-cols-4 gap-2 mb-4">
-                            ${[
-                                {k:'imgBk', t:'早'}, {k:'imgLu', t:'中'}, {k:'imgDn', t:'晚'}, {k:'imgBd', t:'體'}
-                            ].map(item => `
-                                <div class="relative aspect-square border border-slate-100 rounded-xl overflow-hidden shadow-sm bg-slate-50">
-                                    <span class="thumb-label">${item.t}</span>
-                                    ${data[item.k] ? `<img src="${data[item.k]}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center text-[10px] text-slate-300">無</div>`}
+                        <div class="grid grid-cols-4 gap-1.5 mb-3">
+                            ${[{k:'imgBk',t:'早'},{k:'imgLu',t:'午'},{k:'imgDn',t:'晚'},{k:'imgBd',t:'體'}].map(i => `
+                                <div class="relative aspect-square rounded-lg overflow-hidden bg-slate-50 border border-slate-100">
+                                    <span class="thumb-label">${i.t}</span>
+                                    ${data[i.k] ? `<img src="${data[i.k]}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center text-[8px] text-slate-200">無</div>`}
                                 </div>
                             `).join('')}
                         </div>
 
-                        <!-- 自檢表網格排版 -->
-                        <div class="grid grid-cols-3 gap-2">
-                            <div class="status-tag ${data.carbs >= 2.5 ? 'status-tag-green' : ''}">🍚 主:${data.carbs}</div>
-                            <div class="status-tag ${data.prot >= 2.5 ? 'status-tag-green' : ''}">🍗 蛋:${data.prot}</div>
-                            <div class="status-tag ${data.veg >= 3 ? 'status-tag-green' : ''}">🥦 蔬:${data.veg}</div>
-                            <div class="status-tag">💧 ${data.water}cc</div>
-                            <div class="status-tag ${statusClass(data.sleepQuality, '差')}">😴 ${data.sleepQuality}</div>
-                            <div class="status-tag">⏰ ${data.sleepStart || '--'}-${data.sleepEnd || '--'}</div>
-                            <div class="status-tag ${statusClass(data.stress, '高')}">🔥 壓:${data.stress}</div>
-                            <div class="status-tag ${statusClass(data.fatigue, '疲憊')}">🥱 ${data.fatigue}</div>
-                            <div class="status-tag ${statusClass(data.poop, '未排')}">💩 ${data.poop}</div>
-                            <div class="status-tag ${statusClass(data.edema, '嚴重')}">🎈 腫:${data.edema}</div>
-                            <div class="status-tag col-span-2">😋 飽足感: ${data.fullness}/10</div>
+                        <div class="grid grid-cols-5 gap-1">
+                            <div class="status-tag ${data.carbs>=2.5?'status-tag-green':''}">澱粉<b>${data.carbs}</b></div>
+                            <div class="status-tag ${data.prot>=2.5?'status-tag-green':''}">蛋白<b>${data.prot}</b></div>
+                            <div class="status-tag ${data.veg>=3?'status-tag-green':''}">蔬菜<b>${data.veg}</b></div>
+                            <div class="status-tag ${data.water>=2000?'status-tag-green':''}">飲水<b>${data.water}</b></div>
+                            <div class="status-tag ${checkBad(data.sleepQuality, ['差'])}">睡眠<b>${data.sleepQuality}</b></div>
+                            <div class="status-tag ${checkBad(data.stress, ['高'])}">壓力<b>${data.stress}</b></div>
+                            <div class="status-tag ${checkBad(data.fatigue, ['疲憊'])}">疲勞<b>${data.fatigue}</b></div>
+                            <div class="status-tag ${checkBad(data.poop, ['未排'])}">便便<b>${data.poop}</b></div>
+                            <div class="status-tag ${checkBad(data.edema, ['嚴重'])}">水腫<b>${data.edema}</b></div>
+                            <div class="status-tag">飽足<b>${data.fullness}</b></div>
                         </div>
                     `;
                     card.onclick = () => { currentDate = new Date(date); updateDateLabel(); go('record'); };
@@ -476,17 +489,19 @@
                     datasets: [{ 
                         data: dataPoints, 
                         borderColor: '#4F46E5', 
-                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        backgroundColor: 'rgba(79, 70, 229, 0.05)',
                         fill: true,
                         tension: 0.4, 
-                        pointRadius: 4,
-                        pointBackgroundColor: '#4F46E5',
+                        pointRadius: 3,
+                        pointBackgroundColor: '#FFF',
+                        pointBorderWidth: 2,
+                        pointBorderColor: '#4F46E5',
                         spanGaps: true 
                     }]
                 },
                 options: { 
                     plugins: { legend: { display: false } }, 
-                    scales: { y: { beginAtZero: false, grid: { color: '#F8FAFC' } }, x: { grid: { display: false } } }, 
+                    scales: { y: { display: true, grid: { color: '#F1F5F9' }, ticks: { font: { size: 9 } } }, x: { grid: { display: false }, ticks: { font: { size: 9 } } } }, 
                     maintainAspectRatio: false 
                 }
             });
@@ -513,9 +528,8 @@
         }
 
         function formatDate(d) { 
-            const offset = d.getTimezoneOffset();
-            const localDate = new Date(d.getTime() - (offset * 60 * 1000));
-            return localDate.toISOString().split('T')[0]; 
+            const y = d.getFullYear(), m = String(d.getMonth() + 1).padStart(2, '0'), day = String(d.getDate()).padStart(2, '0');
+            return `${y}-${m}-${day}`;
         }
         function updateDateLabel() { 
             document.getElementById('display-date').innerText = currentDate.toLocaleDateString('zh-TW', { month:'long', day:'numeric', weekday:'long'}); 
