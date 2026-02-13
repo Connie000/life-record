@@ -47,7 +47,6 @@
 </head>
 <body>
 
-    <!-- 頁面 1: 每日紀錄 -->
     <div id="record-page" class="page active">
         <header class="p-6 pb-2 flex justify-between items-center">
             <div>
@@ -60,7 +59,6 @@
         </header>
 
         <main class="px-4">
-            <!-- 0. 體重腰圍 -->
             <div class="ios-card p-5">
                 <h3 class="text-[10px] font-black text-slate-400 mb-3 uppercase tracking-widest">核心數據</h3>
                 <div class="grid grid-cols-2 gap-4">
@@ -75,7 +73,6 @@
                 </div>
             </div>
 
-            <!-- 1. 飲食照片 & 份量 -->
             <div class="ios-card p-5">
                 <h3 class="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-widest">1. 飲食與照片</h3>
                 <div class="grid grid-cols-4 gap-2 mb-4">
@@ -96,7 +93,6 @@
                 </div>
             </div>
 
-            <!-- 2. 水 -->
             <div class="ios-card p-5">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest">2. 飲水量 (cc)</h3>
@@ -110,7 +106,6 @@
                 <input type="number" id="f-water" class="hidden" value="0">
             </div>
 
-            <!-- 3-4. 挑戰 -->
             <div class="ios-card p-5">
                 <h3 class="text-[10px] font-black text-slate-400 mb-3 uppercase tracking-widest">3-4. 飲食挑戰</h3>
                 <div class="flex gap-2">
@@ -119,9 +114,8 @@
                 </div>
             </div>
 
-            <!-- 5-10. 生活狀態 -->
             <div class="ios-card p-5">
-                <h3 class="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-widest">生活狀態自檢 (5-10)</h3>
+                <h3 class="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-widest">生活狀態自檢</h3>
                 <div class="space-y-4">
                     <div class="bg-indigo-50/50 p-4 rounded-2xl">
                         <label class="text-[10px] font-bold text-indigo-500 block mb-2">5. 睡眠時間</label>
@@ -137,38 +131,10 @@
                         </select>
                     </div>
                     <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="text-[10px] font-bold text-slate-500">6. 壓力狀況</label>
-                            <select id="f-stress" class="w-full mt-1 bg-slate-50 rounded-xl px-3 py-3 font-bold text-xs border-none">
-                                <option value="低">😊 低</option>
-                                <option value="中">😐 中</option>
-                                <option value="高">🔥 高</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-[10px] font-bold text-slate-500">7. 疲勞狀況</label>
-                            <select id="f-fatigue" class="w-full mt-1 bg-slate-50 rounded-xl px-3 py-3 font-bold text-xs border-none">
-                                <option value="活力">⚡ 活力</option>
-                                <option value="一般">🚶 一般</option>
-                                <option value="疲憊">🥱 疲憊</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-[10px] font-bold text-slate-500">8. 便便狀況</label>
-                            <select id="f-poop" class="w-full mt-1 bg-slate-50 rounded-xl px-3 py-3 font-bold text-xs border-none">
-                                <option value="順暢">🟢 順暢</option>
-                                <option value="硬乾">🟡 硬乾</option>
-                                <option value="未排">🔴 未排便</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-[10px] font-bold text-slate-500">9. 水腫狀況</label>
-                            <select id="f-edema" class="w-full mt-1 bg-slate-50 rounded-xl px-3 py-3 font-bold text-xs border-none">
-                                <option value="無">💧 無</option>
-                                <option value="輕微">🤏 輕微</option>
-                                <option value="嚴重">🎈 嚴重</option>
-                            </select>
-                        </div>
+                        <div><label class="text-[10px] font-bold text-slate-500">6. 壓力</label><select id="f-stress" class="w-full bg-slate-50 rounded-xl px-2 py-3 font-bold text-xs border-none"><option value="低">😊 低</option><option value="中">😐 中</option><option value="高">🔥 高</option></select></div>
+                        <div><label class="text-[10px] font-bold text-slate-500">7. 疲勞</label><select id="f-fatigue" class="w-full bg-slate-50 rounded-xl px-2 py-3 font-bold text-xs border-none"><option value="活力">⚡ 活力</option><option value="一般">🚶 一般</option><option value="疲憊">🥱 疲憊</option></select></div>
+                        <div><label class="text-[10px] font-bold text-slate-500">8. 便便</label><select id="f-poop" class="w-full bg-slate-50 rounded-xl px-2 py-3 font-bold text-xs border-none"><option value="順暢">🟢 順暢</option><option value="硬乾">🟡 硬乾</option><option value="未排">🔴 未排</option></select></div>
+                        <div><label class="text-[10px] font-bold text-slate-500">9. 水腫</label><select id="f-edema" class="w-full bg-slate-50 rounded-xl px-2 py-3 font-bold text-xs border-none"><option value="無">💧 無</option><option value="輕微">🤏 輕微</option><option value="嚴重">🎈 嚴重</option></select></div>
                     </div>
                     <div>
                         <label class="text-[10px] font-bold text-slate-500">10. 飽足感 (1-10)</label>
@@ -184,34 +150,21 @@
         </main>
     </div>
 
-    <!-- 頁面 2: 每週檢視 -->
     <div id="weekly-page" class="page">
-        <header class="p-6">
-            <h1 class="text-2xl font-black text-slate-800">每週檢視</h1>
-            <p id="weekly-range-label" class="text-indigo-600 font-bold text-sm uppercase tracking-wider"></p>
-        </header>
+        <header class="p-6"><h1 class="text-2xl font-black text-slate-800">每週檢視</h1><p id="weekly-range-label" class="text-indigo-600 font-bold text-sm"></p></header>
         <main class="px-4">
-            <div class="ios-card p-5">
-                <h3 class="text-sm font-bold mb-4">本週體重變化</h3>
-                <div class="h-40"><canvas id="weightChart"></canvas></div>
-            </div>
-
-            <div id="weekly-details" class="space-y-4 pb-10">
-                <!-- 每日紀錄清單 -->
-            </div>
+            <div class="ios-card p-5"><h3 class="text-sm font-bold mb-4">本週體重變化</h3><div class="h-40"><canvas id="weightChart"></canvas></div></div>
+            <div id="weekly-details" class="space-y-4 pb-10"></div>
         </main>
     </div>
 
-    <!-- 頁面 3: 月曆 -->
     <div id="calendar-page" class="page">
-        <header class="p-6">
-            <h1 class="text-2xl font-black text-slate-800">歷程回顧</h1>
-        </header>
+        <header class="p-6"><h1 class="text-2xl font-black text-slate-800">歷程回顧</h1></header>
         <main class="px-4">
             <div class="ios-card p-5">
                 <div class="flex justify-between items-center mb-6">
                     <button onclick="changeMonth(-1)" class="p-2 text-slate-400"><i data-lucide="chevron-left"></i></button>
-                    <h2 id="calendar-title" class="font-black text-lg">2024年 1月</h2>
+                    <h2 id="calendar-title" class="font-black text-lg">載入中</h2>
                     <button onclick="changeMonth(1)" class="p-2 text-slate-400"><i data-lucide="chevron-right"></i></button>
                 </div>
                 <div class="grid grid-cols-7 text-center text-[10px] font-black text-slate-300 mb-4 uppercase">
@@ -222,47 +175,54 @@
         </main>
     </div>
 
-    <!-- 導覽 -->
     <nav class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-slate-100 flex justify-around p-4 pb-8 z-[100]">
-        <button onclick="go('record')" id="btn-record" class="nav-item active flex flex-col items-center gap-1">
-            <i data-lucide="edit-3" class="w-6 h-6"></i><span class="text-[10px] font-black">紀錄</span>
-        </button>
-        <button onclick="go('weekly')" id="btn-weekly" class="nav-item text-slate-300 flex flex-col items-center gap-1">
-            <i data-lucide="bar-chart-2" class="w-6 h-6"></i><span class="text-[10px] font-black">週檢視</span>
-        </button>
-        <button onclick="go('calendar')" id="btn-calendar" class="nav-item text-slate-300 flex flex-col items-center gap-1">
-            <i data-lucide="calendar" class="w-6 h-6"></i><span class="text-[10px] font-black">歷程</span>
-        </button>
+        <button onclick="go('record')" id="btn-record" class="nav-item active flex flex-col items-center gap-1"><i data-lucide="edit-3"></i><span class="text-[10px] font-black">紀錄</span></button>
+        <button onclick="go('weekly')" id="btn-weekly" class="nav-item text-slate-300 flex flex-col items-center gap-1"><i data-lucide="bar-chart-2"></i><span class="text-[10px] font-black">週檢視</span></button>
+        <button onclick="go('calendar')" id="btn-calendar" class="nav-item text-slate-300 flex flex-col items-center gap-1"><i data-lucide="calendar"></i><span class="text-[10px] font-black">歷程</span></button>
     </nav>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, doc, setDoc, getDoc, collection, query, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, collection, query, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'health-tracker-v4';
-
-        let user = null;
+        // 全域變數
+        let user = null, db = null, auth = null;
         let allData = {}; 
         let currentDate = new Date(); 
-        let calendarDate = new Date(); 
+        let calendarDate = new Date();
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'health-v4-default';
 
-        window.onload = async () => {
-            lucide.createIcons();
+        // 立即執行的基礎 UI 初始化
+        window.addEventListener('DOMContentLoaded', () => {
             const now = new Date();
             currentDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
             updateDateLabel();
+            lucide.createIcons();
             
-            await signInAnonymously(auth);
-            onAuthStateChanged(auth, u => { if (u) { user = u; listenData(); } });
-        };
+            // 初始化 Firebase
+            initFirebase();
+        });
+
+        async function initFirebase() {
+            try {
+                if (typeof __firebase_config === 'undefined') {
+                    console.warn("Firebase config is missing, running in local mode.");
+                    return;
+                }
+                const app = initializeApp(JSON.parse(__firebase_config));
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                await signInAnonymously(auth);
+                onAuthStateChanged(auth, u => { if (u) { user = u; listenData(); } });
+            } catch (e) {
+                console.error("Firebase init failed:", e);
+            }
+        }
 
         function listenData() {
-            if (!user) return;
+            if (!user || !db) return;
             onSnapshot(query(collection(db, 'artifacts', appId, 'users', user.uid, 'dailyLogs')), (snap) => {
                 allData = {};
                 snap.forEach(doc => allData[doc.id] = doc.data());
@@ -272,34 +232,14 @@
             }, (err) => console.error(err));
         }
 
-        async function compressImage(dataUrl, maxWidth = 800) {
-            return new Promise((resolve) => {
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    let width = img.width, height = img.height;
-                    if (width > maxWidth) {
-                        height = Math.round((height * maxWidth) / width);
-                        width = maxWidth;
-                    }
-                    canvas.width = width;
-                    canvas.height = height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, width, height);
-                    resolve(canvas.toDataURL('image/jpeg', 0.7));
-                };
-                img.src = dataUrl;
-            });
-        }
-
+        // --- 功能函數 ---
         window.upImg = (id) => document.getElementById(`f-${id}`).click();
         window.handleFile = async (input, imgId) => {
             if (input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = async e => {
-                    const compressed = await compressImage(e.target.result);
+                reader.onload = e => {
                     const img = document.getElementById(imgId);
-                    img.src = compressed;
+                    img.src = e.target.result;
                     img.classList.remove('hidden');
                 };
                 reader.readAsDataURL(input.files[0]);
@@ -313,17 +253,15 @@
 
         window.adjWater = (v) => {
             const el = document.getElementById('f-water');
-            const disp = document.getElementById('display-water');
             el.value = Math.max(0, parseInt(el.value) + v);
-            disp.innerText = `${el.value} cc`;
+            document.getElementById('display-water').innerText = `${el.value} cc`;
         };
 
         window.saveRecord = async () => {
-            if (!user) return;
+            if (!user || !db) { alert("尚未連線到資料庫，請稍後再試"); return; }
             const btn = document.getElementById('save-btn');
-            const dateStr = formatDate(currentDate);
             btn.disabled = true;
-            btn.innerText = "同步數據中...";
+            btn.innerText = "儲存中...";
             
             const data = {
                 weight: parseFloat(document.getElementById('f-weight').value) || null,
@@ -342,16 +280,16 @@
                 poop: document.getElementById('f-poop').value,
                 edema: document.getElementById('f-edema').value,
                 fullness: parseInt(document.getElementById('f-fullness').value),
-                imgBk: document.getElementById('img-bk').src || null,
-                imgLu: document.getElementById('img-lu').src || null,
-                imgDn: document.getElementById('img-dn').src || null,
-                imgBd: document.getElementById('img-bd').src || null,
+                imgBk: document.getElementById('img-bk').src.startsWith('data') ? document.getElementById('img-bk').src : null,
+                imgLu: document.getElementById('img-lu').src.startsWith('data') ? document.getElementById('img-lu').src : null,
+                imgDn: document.getElementById('img-dn').src.startsWith('data') ? document.getElementById('img-dn').src : null,
+                imgBd: document.getElementById('img-bd').src.startsWith('data') ? document.getElementById('img-bd').src : null,
                 updated: new Date().getTime()
             };
 
             try {
-                await setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'dailyLogs', dateStr), data);
-                btn.innerText = "已成功儲存 ✨";
+                await setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'dailyLogs', formatDate(currentDate)), data);
+                btn.innerText = "已儲存 ✨";
             } catch (e) { btn.innerText = "儲存失敗"; }
             setTimeout(() => { btn.disabled = false; btn.innerText = "儲存今日紀錄"; }, 2000);
         };
@@ -365,28 +303,15 @@
             document.getElementById('v-carbs').innerText = (data.carbs || 0).toFixed(1);
             document.getElementById('v-prot').innerText = (data.prot || 0).toFixed(1);
             document.getElementById('v-veg').innerText = (data.veg || 0).toFixed(1);
-            document.getElementById('f-sleep-start').value = data.sleepStart || "";
-            document.getElementById('f-sleep-end').value = data.sleepEnd || "";
-            document.getElementById('f-sleep-quality').value = data.sleepQuality || "良好";
-            document.getElementById('f-fullness').value = data.fullness || 5;
-            document.getElementById('v-fullness').innerText = data.fullness || 5;
-            ['stress', 'fatigue', 'poop', 'edema'].forEach(id => {
-                document.getElementById(`f-${id}`).value = data[id] || document.getElementById(`f-${id}`).options[0].value;
+            ['bk', 'lu', 'dn', 'bd'].forEach(id => {
+                const img = document.getElementById(`img-${id}`);
+                const src = data[`img${id.charAt(0).toUpperCase() + id.slice(1)}`];
+                if(src) { img.src = src; img.classList.remove('hidden'); } else { img.src = ""; img.classList.add('hidden'); }
             });
+            // 重置按鈕狀態
             ['evil', 'party'].forEach(id => {
                 if(data[id]) document.getElementById(`btn-${id}`).classList.add('active');
                 else document.getElementById(`btn-${id}`).classList.remove('active');
-            });
-            ['bk', 'lu', 'dn', 'bd'].forEach(id => {
-                const img = document.getElementById(`img-${id}`);
-                const dataKey = `img${id.charAt(0).toUpperCase() + id.slice(1)}`;
-                if(data[dataKey] && data[dataKey].startsWith('data:image')) {
-                    img.src = data[dataKey];
-                    img.classList.remove('hidden');
-                } else {
-                    img.src = "";
-                    img.classList.add('hidden');
-                }
             });
         }
 
@@ -404,70 +329,41 @@
         function renderWeekly() {
             const container = document.getElementById('weekly-details');
             container.innerHTML = "";
-            
-            // 重新計算「目前時間」所在的週一
             const now = new Date();
             const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-            const dayOfWeek = today.getDay(); // 0:日, 1:一...
+            const dayOfWeek = today.getDay();
             const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); 
             const monday = new Date(today.setDate(diff));
             
             const weekDates = [];
             for(let i=0; i<7; i++) {
-                const d = new Date(monday);
-                d.setDate(monday.getDate() + i);
+                const d = new Date(monday); d.setDate(monday.getDate() + i);
                 weekDates.push(formatDate(d));
             }
             document.getElementById('weekly-range-label').innerText = `${weekDates[0]} ~ ${weekDates[6]}`;
 
             weekDates.forEach(date => {
-                const data = allData[date] || null;
+                const data = allData[date];
                 const dObj = new Date(date);
                 const dayName = ['日','一','二','三','四','五','六'][dObj.getDay()];
-                const dateLabel = `${dObj.getMonth()+1}/${dObj.getDate()} (${dayName})`;
-                
                 const card = document.createElement('div');
-                card.className = "ios-card p-4 overflow-hidden";
+                card.className = "ios-card p-4";
                 if(!data) {
-                    card.innerHTML = `<div class="flex justify-between items-center opacity-30 px-2 py-3 border-2 border-dashed border-slate-200 rounded-xl"><span class="font-bold text-slate-400 text-xs">${dateLabel}</span><span class="text-[10px]">尚未填寫</span></div>`;
+                    card.innerHTML = `<div class="opacity-30 text-xs font-bold">${dObj.getMonth()+1}/${dObj.getDate()} (${dayName}) 尚未紀錄</div>`;
                 } else {
-                    const checkBad = (val, badArr) => badArr.includes(val) ? 'status-tag-red' : (['良好','活力','順暢','無','低'].includes(val) ? 'status-tag-green' : '');
-                    
                     card.innerHTML = `
-                        <div class="flex justify-between items-start mb-3">
-                            <div>
-                                <span class="font-black text-slate-900 text-sm">${dateLabel}</span>
-                                <div class="flex gap-1 mt-1">
-                                    <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">⚖️ ${data.weight || '--'}</span>
-                                    <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">📏 ${data.waist || '--'}</span>
-                                </div>
-                            </div>
-                            <div class="flex gap-1">
-                                ${data.evil ? '<span class="w-5 h-5 flex items-center justify-center bg-red-100 rounded text-[10px]">🍕</span>' : ''}
-                                ${data.party ? '<span class="w-5 h-5 flex items-center justify-center bg-orange-100 rounded text-[10px]">🥂</span>' : ''}
-                            </div>
+                        <div class="flex justify-between font-black text-sm mb-2">
+                            <span>${dObj.getMonth()+1}/${dObj.getDate()} (${dayName})</span>
+                            <span class="text-indigo-600">⚖️ ${data.weight || '--'} kg</span>
                         </div>
-
-                        <div class="grid grid-cols-4 gap-1.5 mb-3">
-                            ${[{k:'imgBk',t:'早'},{k:'imgLu',t:'午'},{k:'imgDn',t:'晚'},{k:'imgBd',t:'體'}].map(i => `
-                                <div class="relative aspect-square rounded-lg overflow-hidden bg-slate-50 border border-slate-100">
-                                    <span class="thumb-label">${i.t}</span>
-                                    ${data[i.k] ? `<img src="${data[i.k]}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center text-[8px] text-slate-200">無</div>`}
-                                </div>
-                            `).join('')}
+                        <div class="grid grid-cols-4 gap-1 mb-2">
+                            ${['imgBk','imgLu','imgDn','imgBd'].map(k => `<div class="aspect-square bg-slate-50 rounded overflow-hidden">${data[k]?`<img src="${data[k]}" class="w-full h-full object-cover">`:''}</div>`).join('')}
                         </div>
-
-                        <div class="grid grid-cols-5 gap-1">
-                            <div class="status-tag ${data.carbs>=2.5?'status-tag-green':''}">澱粉<b>${data.carbs}</b></div>
-                            <div class="status-tag ${data.prot>=2.5?'status-tag-green':''}">蛋白<b>${data.prot}</b></div>
-                            <div class="status-tag ${data.veg>=3?'status-tag-green':''}">蔬菜<b>${data.veg}</b></div>
-                            <div class="status-tag ${data.water>=2000?'status-tag-green':''}">飲水<b>${data.water}</b></div>
-                            <div class="status-tag ${checkBad(data.sleepQuality, ['差'])}">睡眠<b>${data.sleepQuality}</b></div>
-                            <div class="status-tag ${checkBad(data.stress, ['高'])}">壓力<b>${data.stress}</b></div>
-                            <div class="status-tag ${checkBad(data.fatigue, ['疲憊'])}">疲勞<b>${data.fatigue}</b></div>
-                            <div class="status-tag ${checkBad(data.poop, ['未排'])}">便便<b>${data.poop}</b></div>
-                            <div class="status-tag ${checkBad(data.edema, ['嚴重'])}">水腫<b>${data.edema}</b></div>
-                            <div class="status-tag">飽足<b>${data.fullness}</b></div>
+                        <div class="flex gap-2 text-[10px] font-bold">
+                            <span class="bg-slate-100 px-2 py-1 rounded">🍚 ${data.carbs}</span>
+                            <span class="bg-slate-100 px-2 py-1 rounded">🍗 ${data.prot}</span>
+                            <span class="bg-slate-100 px-2 py-1 rounded">🥦 ${data.veg}</span>
+                            <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded">💧 ${data.water}cc</span>
                         </div>
                     `;
                     card.onclick = () => { currentDate = new Date(date); updateDateLabel(); go('record'); };
@@ -486,24 +382,9 @@
                 type: 'line',
                 data: {
                     labels: dates.map(d => d.split('-')[2]),
-                    datasets: [{ 
-                        data: dataPoints, 
-                        borderColor: '#4F46E5', 
-                        backgroundColor: 'rgba(79, 70, 229, 0.05)',
-                        fill: true,
-                        tension: 0.4, 
-                        pointRadius: 3,
-                        pointBackgroundColor: '#FFF',
-                        pointBorderWidth: 2,
-                        pointBorderColor: '#4F46E5',
-                        spanGaps: true 
-                    }]
+                    datasets: [{ data: dataPoints, borderColor: '#4F46E5', tension: 0.4, fill: false, spanGaps: true }]
                 },
-                options: { 
-                    plugins: { legend: { display: false } }, 
-                    scales: { y: { display: true, grid: { color: '#F1F5F9' }, ticks: { font: { size: 9 } } }, x: { grid: { display: false }, ticks: { font: { size: 9 } } } }, 
-                    maintainAspectRatio: false 
-                }
+                options: { plugins: { legend: { display: false } }, maintainAspectRatio: false }
             });
         }
 
@@ -527,13 +408,8 @@
             }
         }
 
-        function formatDate(d) { 
-            const y = d.getFullYear(), m = String(d.getMonth() + 1).padStart(2, '0'), day = String(d.getDate()).padStart(2, '0');
-            return `${y}-${m}-${day}`;
-        }
-        function updateDateLabel() { 
-            document.getElementById('display-date').innerText = currentDate.toLocaleDateString('zh-TW', { month:'long', day:'numeric', weekday:'long'}); 
-        }
+        function formatDate(d) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+        function updateDateLabel() { document.getElementById('display-date').innerText = currentDate.toLocaleDateString('zh-TW', { month:'long', day:'numeric', weekday:'long'}); }
     </script>
 </body>
 </html>
